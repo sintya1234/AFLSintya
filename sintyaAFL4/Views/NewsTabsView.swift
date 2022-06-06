@@ -9,6 +9,7 @@ import SwiftUI
 
 
 struct NewsTabsView: View {
+    @State private var currentSegment = 0
     
     @StateObject var articleNewsVM = ArticleNewsViewModel()
    // @StateObject var searchVM = ArticleSearchViewModel.shared
@@ -24,17 +25,21 @@ struct NewsTabsView: View {
                 .searchable(text: $articleNewsVM.searchQuery)
                 .onChange(of: articleNewsVM.searchQuery) { newValue in
                     if newValue.isEmpty {
-                        articleNewsVM.phase = .empty
+                      //  articleNewsVM.phase = .empty
+                        refreshTask()
                     }
                 }
                 .onSubmit(of: .search, search)
+               // .navigationBarTitle("The Shire News")
                 .navigationBarItems(trailing: menu)
+                .padding()
             
 //            ArticleListView(articles: articles)
 //                .overlay(overlayView)
 //                .task(id: articleNewsVM.fetchTaskToken, loadTask)
 //
 //                                .refreshable(action: refreshTask)
+            
         }
     }
     
@@ -92,18 +97,48 @@ struct NewsTabsView: View {
     }
     
     private var menu: some View {
-        Menu {
-            Picker("Category", selection: $articleNewsVM.fetchTaskToken.category) {
-                ForEach(Category.allCases) {
-                    Text($0.text).tag($0)
+      // Menu {
+        
+                Picker("Category", selection: $articleNewsVM.fetchTaskToken.category)
+                {
+                    ForEach(Category.allCases) {
+                        Text($0.text).tag($0)
+
+                    }
                 }
-            }
-        } label: {
-            Image(systemName: "fiberchannel")
-                .imageScale(.large)
-        }
+                .pickerStyle(SegmentedPickerStyle())
+
+
     }
-}
+        
+        
+    }
+
+        
+        
+//        Picker("Category", selection: $articleNewsVM.fetchTaskToken.category)
+//        {
+//            ForEach(Category.allCases) {
+//                Text($0.text).tag($0)
+//
+//            }
+//        }
+//        .pickerStyle(SegmentedPickerStyle())
+        
+        
+        
+        
+        
+        
+      //  .scrollView. let
+       // .frame = CGRect(origin: CGPoint.zero, size: 10);
+       // .scrollView.contentSize = size
+     //   }
+       // label: {
+        //   Image(systemName: "fiberchannel")
+          //     .imageScale(.large)
+      //  }
+    
 
 struct NewsTabsView_Previews: PreviewProvider {
     
