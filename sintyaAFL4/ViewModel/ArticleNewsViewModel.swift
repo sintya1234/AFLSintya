@@ -68,6 +68,7 @@ class ArticleNewsViewModel: ObservableObject {
 //            phase = .failure(error)
 //        }
     }
+    //
     
     //new
     func searchArticle() async {

@@ -49,3 +49,4 @@ struct SearchHistoryListView_Previews: PreviewProvider {
     }
 }
 
+//

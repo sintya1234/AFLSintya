@@ -94,3 +94,4 @@ struct SearchTabView_Previews: PreviewProvider {
             .environmentObject(bookmarkVM)
     }
 }
+//
